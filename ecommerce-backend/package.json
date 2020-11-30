@@ -16,5 +16,10 @@
     "express"
   ],
   "author": "Ebubekir Demiray",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.7.0",
+    "mongoose": "^5.10.18"
+  }
 }
