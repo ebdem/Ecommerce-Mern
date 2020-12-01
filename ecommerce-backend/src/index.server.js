@@ -4,6 +4,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
+//Routes
+const userRoutes = require('./routes/user');
+
 //enviroment variable
 env.config();
 
@@ -15,7 +18,8 @@ mongoose.connect(
 
     {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     }
     ).then(() => {
         console.log("dataBase Connection success");
@@ -23,21 +27,9 @@ mongoose.connect(
 
 
 app.use(bodyParser());
+app.use('/api', userRoutes);
 
 
-app.get('/', (req, res, next) => {
-    res.status(200).json({
-        message:"Hello From"
-    })
-
-})
-
-app.post('/data', (req, res, next) => {
-    res.status(200).json({
-        message: req.body
-    })
-
-})
 
 app.listen(process.env.PORT, () => {
     console.log(`server is Running on Port ${process.env.PORT}`)
